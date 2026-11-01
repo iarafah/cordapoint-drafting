@@ -1,0 +1,14 @@
+{
+  "name": "cordapoint-drafting",
+  "version": "0.1.0",
+  "description": "Sends drafting work to Gemini: emails, posts, translations, rewrites and summaries. Claude writes the prompt with placeholders, runs the bundled script, then checks and fixes the draft and says which Gemini model wrote it. Public text only: no personal data, secrets or confidential business details.",
+  "author": {
+    "name": "Arafah"
+  },
+  "keywords": [
+    "gemini",
+    "drafting",
+    "writing",
+    "translation"
+  ]
+}
