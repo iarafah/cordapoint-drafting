@@ -1,7 +1,7 @@
 {
   "name": "cordapoint-drafting",
-  "version": "0.1.0",
-  "description": "Sends drafting work to Gemini: emails, posts, translations, rewrites and summaries. Claude writes the prompt with placeholders, runs the bundled script, then checks and fixes the draft and says which Gemini model wrote it. Public text only: no personal data, secrets or confidential business details.",
+  "version": "0.2.0",
+  "description": "Sends drafting work to Gemini: emails, posts, translations, rewrites and summaries. Claude writes the prompt with placeholders, calls the Gemini tool, then checks and fixes each draft and says which Gemini model wrote it. Public text only: no personal data, secrets, or confidential business details.",
   "author": {
     "name": "Arafah"
   },
@@ -11,5 +11,26 @@
     "drafting",
     "writing",
     "translation"
-  ]
+  ],
+  "userConfig": {
+    "gemini_api_key": {
+      "type": "string",
+      "title": "Gemini API key",
+      "description": "Your Google Gemini API key. Stored in your system's secure credential store, never in a settings file.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "mcpServers": {
+    "gemini": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/server/gemini-mcp.mjs"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "${user_config.gemini_api_key}",
+        "NODE_USE_ENV_PROXY": "1"
+      }
+    }
+  }
 }

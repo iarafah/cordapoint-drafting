@@ -5,17 +5,15 @@ description: Draft emails, posts, templates, translations, rewording, summaries 
 
 # Gemini drafting
 
-Send the drafting to Gemini, then review it yourself.
+Send the drafting to Gemini with the `draft` tool from this plugin's `gemini` server, then review it yourself.
 
 1. Write the prompt. Use placeholders such as [Name] and [LINK]; put real values in after the draft comes back.
-2. Run it:
-   `echo "<prompt>" | node "${CLAUDE_PLUGIN_ROOT}/scripts/gemini-draft.mjs"`
-   It needs `GEMINI_API_KEY` in the environment. In a cloud session also set `NODE_USE_ENV_PROXY=1`.
+2. Call the `draft` tool with the prompt. It returns the draft and, on the last line, the model that wrote it.
 3. Check the draft for accuracy, tone and anything it invented; fix it.
-4. Tell the user the draft came from Gemini, and which model. The script prints the model name on stderr.
+4. Tell the user the draft came from Gemini, and which model.
 
 ## Public text only
 
 Never send personal data, secrets, keys, or confidential business information to Gemini. Draft with placeholders and fill them in afterwards.
 
-If Gemini is unavailable (the script exits with an error), say so and offer to write the draft directly.
+If the tool returns an error, say so. If the key is missing, the user adds it in the plugin's settings (`gemini_api_key`). Otherwise offer to write the draft directly.
